@@ -529,3 +529,10 @@ function getTreeY(x, baseHeight, amplitude) {
   const sineBaseY = window.innerHeight - baseHeight;
   return Math.sinus(x) * amplitude + sineBaseY;
 }
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+});
+
+document.addEventListener("selectstart", function (e) {
+  e.preventDefault();
+});
