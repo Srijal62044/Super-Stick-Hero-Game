@@ -176,12 +176,14 @@ function endStretch(event) {
 }
 
 // Desktop
-window.addEventListener("mousedown", startStretch);
-window.addEventListener("mouseup", endStretch);
+canvas.addEventListener("pointerdown", function (e) {
+  if (restartButton.style.display === "block") return;
 
-// Mobile Touch
-window.addEventListener("touchstart", startStretch, { passive: false });
-window.addEventListener("touchend", endStretch, { passive: false });
+  startStretch(e);
+});
+canvas.addEventListener("pointerup", endStretch);
+canvas.addEventListener("pointercancel", endStretch);
+canvas.addEventListener("pointerleave", endStretch);
 
 window.addEventListener("resize", function (event) {
   canvas.width = window.innerWidth;
