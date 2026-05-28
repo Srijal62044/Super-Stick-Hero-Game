@@ -156,20 +156,32 @@ window.addEventListener("keydown", function (event) {
   }
 });
 
-window.addEventListener("mousedown", function (event) {
+function startStretch(event) {
+  event.preventDefault();
+
   if (phase == "waiting") {
     lastTimestamp = undefined;
     introductionElement.style.opacity = 0;
     phase = "stretching";
     window.requestAnimationFrame(animate);
   }
-});
+}
 
-window.addEventListener("mouseup", function (event) {
+function endStretch(event) {
+  event.preventDefault();
+
   if (phase == "stretching") {
     phase = "turning";
   }
-});
+}
+
+// Desktop
+window.addEventListener("mousedown", startStretch);
+window.addEventListener("mouseup", endStretch);
+
+// Mobile Touch
+window.addEventListener("touchstart", startStretch, { passive: false });
+window.addEventListener("touchend", endStretch, { passive: false });
 
 window.addEventListener("resize", function (event) {
   canvas.width = window.innerWidth;
