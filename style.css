@@ -15,6 +15,10 @@ body {
   touch-action: none;
   overflow: hidden;
 }
+canvas {
+  touch-action: none;
+  outline: none;
+}
 
 .container {
   display: flex;
