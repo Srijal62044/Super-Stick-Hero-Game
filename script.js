@@ -177,7 +177,9 @@ function endStretch(event) {
 
 // Desktop
 canvas.addEventListener("pointerdown", function (e) {
-  if (restartButton.style.display === "block") return;
+  if (restartButton.style.display === "block") {
+    return;
+  }
 
   startStretch(e);
 });
@@ -337,11 +339,14 @@ function draw() {
   ctx.restore();
 }
 
-restartButton.addEventListener("click", function (event) {
+restartButton.onclick = function (event) {
   event.preventDefault();
+  event.stopPropagation();
+
   resetGame();
+
   restartButton.style.display = "none";
-});
+}; 
 
 function drawPlatforms() {
   platforms.forEach(({ x, w }) => {
